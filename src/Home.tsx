@@ -2,22 +2,26 @@ export function Home() {
   return (
     <html lang="en">
       <head>
-        <meta charset="UTF-8" />
+        <meta charSet="UTF-8" />
         <meta
           name="viewport"
-          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui"
         />
+        <meta name="application-name" content="Telegraph Image Hosting" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
         <title>Telegraph Image Hosting</title>
         <link
           rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.5.3/css/bootstrap.min.css"
         />
         <link rel="stylesheet" href="/static/style.css" />
-        <link href="/favicon.ico" rel="icon" />
+        <link rel="icon" type="image/png" href="https://image.523125.xyz/file/b25bf92d69965d56e8e7e.png" />
+        <link rel="apple-touch-icon" href="https://image.523125.xyz/file/b25bf92d69965d56e8e7e.png" />
       </head>
 
       <body>
-        <div className="full-window" ondragover="event.preventDefault()">
+        <div className="full-window" onDragOver={(e) => e.preventDefault()}>
           <div className="container card">
             <h3 className="text-center">Telegraph Image Hosting</h3>
             <p className="text-center text-muted">
@@ -46,12 +50,13 @@ export function Home() {
             <div
               id="uploadStatus"
               className="text-center"
-              style="margin-top: 10px"
+              style={{marginTop: "10px"}}
             ></div>
             <a
               className="text-center text-muted"
               href="https://github.com/ifyour/cf-image-hosting"
               target="_blank"
+              rel="noopener noreferrer"
             >
               GitHub
             </a>

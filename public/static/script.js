@@ -91,10 +91,11 @@ function handleUpload(file) {
           throw new Error(data.error);
         }
         const src = window.location.origin + data[0].src;
+        const markdownLink = `![image](${src})`;
         uploadStatus.innerHTML = `
         <div class="alert alert-success text-center">Successful 🥳</div>
         <div class="input-group" style="margin-bottom: 10px">
-          <input type="text" class="form-control" id="imageUrl" value="${src}">
+          <input type="text" class="form-control" id="imageUrl" value="${markdownLink}">
           <div class="input-group-append">
             <button class="btn btn-outline-secondary copy-btn" type="button">Copy</button>
           </div>
@@ -122,3 +123,4 @@ function handleUpload(file) {
       });
   });
 }
+

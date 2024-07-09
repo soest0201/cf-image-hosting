@@ -20,8 +20,7 @@ function onFileDrop(event) {
 }
 
 function onFilePaste(event) {
-  const items = (event.clipboardData || event.originalEvent.clipboardData)
-    .items;
+  const items = (event.clipboardData || event.originalEvent.clipboardData).items;
   for (let index in items) {
     const item = items[index];
     if (item.kind === "file") {
@@ -109,12 +108,27 @@ function handleUpload(file) {
         document
           .querySelector(".copy-btn")
           .addEventListener("click", onFileUrlCopy);
+
+        // 发送POST请求到指定URL
+        fetch('https://memos.523125.xyz/api/v1/memos', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsImtpZCI6InYxIiwidHlwIjoiSldUIn0.eyJuYW1lIjoic29lc3QiLCJpc3MiOiJtZW1vcyIsInN1YiI6IjEiLCJhdWQiOlsidXNlci5hY2Nlc3MtdG9rZW4iXSwiaWF0IjoxNzIwNTMzMDk4fQ.paY9mXUPJ93wsfvfpplGXayw11frMU1N5ot2Pzbjdoc'
+          },
+          body: JSON.stringify({ content: src, visibility: 'PUBLIC' }),
+        })
+        .then((response) => response.json())
+        .then((result) => {
+          console.log('POST request successful:', result);
+        })
+        .catch((error) => {
+          console.error('Error in POST request:', error);
+        });
       })
       .catch((error) => {
         uploadStatus.innerHTML = `
-        <div class="alert alert-danger">${
-          error || "Upload failed. Please try again."
-        }</div>
+        <div class="alert alert-danger">${error || "Upload failed. Please try again."}</div>
         `;
       })
       .finally(() => {
@@ -123,4 +137,3 @@ function handleUpload(file) {
       });
   });
 }
-
